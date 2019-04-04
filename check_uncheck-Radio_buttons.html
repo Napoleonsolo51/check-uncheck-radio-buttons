@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Check/uncheck/ Disable Radio Buttons with JavaScript</title>
+    <script>
+        // assign onclick handler to hazard checkbox
+        document.getElementById('hazard').onclick = function () {
+
+            // is hazard checkbox checked?
+            var hazard = this.checked; // true or false
+
+            // get list of radio buttons with name 'ship'
+            var radios = this.form.elements['ship'];
+
+            // loop through list of radio buttons
+            for (var i = 0, len = radios.length; i < len; i++) {
+                var r = radios[i]; // current radio button
+
+                if (hazard) { // hazard checkbox checked
+
+                    if (r.value === 'std') { // standard shipping
+                        r.checked = true; // set checked
+                    } else { // not standard shipping
+                        r.checked = false; // unchecked
+                        r.disabled = true; // disable
+                    }
+
+                } else { // hazard not checked
+                    r.disabled = false; // no radios disabled
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="#" method="post" class="demoForm" id="demoForm">
+        <fieldset>
+            <legend>Demo: Check/Disable using JavaScript</legend>
+
+            <p><label>Hazardous Items? <input type="checkbox" id="hazard" name="hazard" value="hazard" /></label></p>
+
+            <p>Shipping method:</p>
+
+            <p>
+                <label><input type="radio" name="ship" value="std" /> Standard Ground</label>
+                <label><input type="radio" name="ship" value="2day" checked /> Second Day</label>
+                <label><input type="radio" name="ship" value="1day" /> Overnight</label>
+            </p>
+
+        </fieldset>
+
+    </form>
+</body>
+</html>
